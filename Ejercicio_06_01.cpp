@@ -13,20 +13,22 @@
 #include <iostream>
 using namespace std;
 
+int Euclides(int, int);
+int main()
+{
+    int A,B;
+    cout << "Ingrese los numeros: "<<endl;
+    cin >> A >> B;
+    cout << Euclides(A,B)<< endl;
+    return 0;
+}
+
 int Euclides(int A, int B){
     if (A % B == 0){
         return B; 
     }
     else{
-        return Euclides (B, A % B);
+        return Euclides (B, A % B); // recursivo
     }
 
-}
-int main()
-{
-    int A,B;
-    cout << "Ingrese los numeros: "<<endl;
-    cin >> A,B;
-    cout << Euclides(A,B)<< endl;
-    return 0;
 }
