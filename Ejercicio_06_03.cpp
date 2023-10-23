@@ -12,32 +12,39 @@
 
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
-int sumaElementos(vector<int>& vec) {
-    int n = vec.size();
-    if (n == 0) {
-        return 0;
+int Suma(vector<int> &vector, int i) {
+    // Caso base: si el índice es 0, retornamos el primer elemento del vector
+    if (i == 0) {
+        return vector[0];
     }
-    return sumaElementos(vec) + vec[n - 1];
+    else {
+        return vector[i] + Suma(vector, i - 1);
+    }
 }
 
 int main() {
-    int n;
-    cout << "Ingrese la cantidad de elementos del vector: ";
-    cin >> n;
-    
-    vector<int> numeros(n);
-    
-    cout << "Ingrese " << n << " numeros:" << endl; //llenar el vector
-    for (int i = 0; i < n; i++) {
-        cin >> numeros[i];
+    int size;
+    cout << "Ingrese el tamaño del vector: ";
+    cin >> size;
+    vector<int> vector(size);
+    srand(static_cast<unsigned>(time(nullptr)));
+    for (int i = 0; i < size; i++) {
+        vector[i] = rand() % 101;
     }
-
-    int resultado = sumaElementos(numeros);
-
-    cout << "La suma de los elementos del vector es: " << resultado << endl;
+    int r = Suma(vector, size - 1);
+    cout << "Vector:";
+    for (int i = 0; i < size; i++) {
+        cout << " " << vector[i];
+    }
+    cout << endl;
+    cout << "La suma de los elementos es: " << r << endl;
 
     return 0;
 }
+
+
